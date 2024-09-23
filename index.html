@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EasyLearn</title>
+</head>
+<body>
+	<div id="mainDiv" style="display: none;">
+		<button id="questionDiv">Вопрос</button><button class="ui" id="showAnswer">Показать ответ</button><button class="ui" id="yes">Верно</button><button class="ui" id="no">Неверно</button><button class="ui" id="progress" style="background: #f9a875;"></button>
+	</div>
+	<div id="testsDiv"></div>
+	<script src="logic.js"></script>
+	<style>
+		#questionDiv {
+			text-align: center;
+			background: white;
+			border-width: 0;
+			padding: 0;
+			font-family: system-ui;
+			font-size: 30px;
+		}
+		.ui {
+			text-align: center;
+			background: #fff6d3;
+			transition: background 0.1s;
+			border-width: 0;
+			padding: 0;
+			font-family: system-ui;
+			font-size: 30px;
+		}
+		button:hover {
+			background: #eb6b6f;
+		}
+		button:active {
+			background: #7c3f58;
+		}
+		body {
+			margin: 0;
+		}
+	</style>
+</body>
+</html>
