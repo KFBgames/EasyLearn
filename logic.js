@@ -24,6 +24,9 @@ window.onresize = function() {
 	progress.style.height = Math.floor(window.innerWidth * 0.05) + "px";
 	progress.style.position = "absolute";
 	progress.style.top = Math.floor(window.innerHeight * 0.95) + "px";	
+	final.style.width = Math.floor(window.innerWidth) + "px";
+	final.style.height = Math.floor(window.innerHeight) + "px";
+	final.style.position = "absolute";
 }
 window.onresize();
 var currentTest = 0;
@@ -35,10 +38,13 @@ for (var i = 0; i < tests[currentTest][1].length; i++) {
 }*/
 //var restTest = ["name1",["q11","q12","q13"],["a11","a12","a13"]];
 var currentQuestion = 0;
+var prevQuestion = -1; // чтобы избежать повторений
 document.body.style.overflow = "visible";
 var restTest = [];
+var answeredOneAttempt = []; // ответил ли с первой попытки
+var noPressed = 0;
 for (var i = 0; i < tests.length; i++) {
-	testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top;" onclick="currentTest = ${i};document.body.style.overflow = 'hidden';mainDiv.style.display = 'block';testsDiv.style.display = 'none';restTest = [tests[currentTest], [], []];for (var i = 0; i < tests[currentTest][1].length; i++) {	restTest[1].push(tests[currentTest][1][i]);	restTest[2].push(tests[currentTest][2][i]);	console.log(tests[currentTest][i]);}newQuestion();">${tests[i][0]}</button>`;
+	testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top;" onclick="currentTest = ${i};document.body.style.overflow = 'hidden';mainDiv.style.display = 'block';testsDiv.style.display = 'none';noPressed = 0;restTest = [tests[currentTest], [], []];for (var i = 0; i < tests[currentTest][1].length; i++) {	restTest[1].push(tests[currentTest][1][i]);	restTest[2].push(tests[currentTest][2][i]);	console.log(tests[currentTest][i]);}newQuestion();">${tests[i][0]}</button>`;
 }
 function newQuestion() {
 	showAnswer.innerHTML = "Показать ответ";
@@ -47,9 +53,26 @@ function newQuestion() {
 	if (restTest[1].length == 0) {
 		document.body.style.overflow = 'visible';
 		mainDiv.style.display = 'none';
-		testsDiv.style.display = 'block';
+		final.style.display = 'block';
+		var answeredOneAttemptCount = 0;
+		for (var i = 0; i < answeredOneAttempt.length; i++) {
+			answeredOneAttempt[i] == true && answeredOneAttemptCount++;
+		}
+		final.innerHTML = "";
+		if (answeredOneAttemptCount == tests[currentTest][1].length) {
+			final.innerHTML = `Вы сёмга<br>`;
+		}
+		final.innerHTML += `Вы ответили с первой попытки на ${answeredOneAttemptCount}/${tests[currentTest][1].length} вопросов<br>Вы ошиблись ${noPressed} раз`;
 	}
-	currentQuestion = Math.floor(Math.random() * restTest[1].length);
+	if (prevQuestion == -1 || restTest[1].length == 1) {
+		currentQuestion = Math.floor(Math.random() * restTest[1].length);
+	} else {
+		currentQuestion = Math.floor(Math.random() * (restTest[1].length - 1));
+		if (currentQuestion >= prevQuestion) {
+			currentQuestion++;
+		}
+	}
+	prevQuestion = currentQuestion;
 	questionDiv.innerHTML = restTest[1][currentQuestion];
 	showAnswer.onclick = function() {
 		if (showAnswer.innerHTML == restTest[2][currentQuestion]) {
@@ -59,9 +82,21 @@ function newQuestion() {
 		}
 	}
 }
-no.onclick = newQuestion;
+no.onclick = function() {
+	noPressed++;
+	answeredOneAttempt[currentQuestion] = false;
+	newQuestion();
+}
 yes.onclick = function() {
+	if (answeredOneAttempt[tests[currentTest][1].indexOf(restTest[1][currentQuestion])] == undefined) {
+		answeredOneAttempt[tests[currentTest][1].indexOf(restTest[1][currentQuestion])] = true;
+	}
+	//console.log(currentQuestion, );
 	restTest[1].splice(currentQuestion, 1);
 	restTest[2].splice(currentQuestion, 1);
 	newQuestion();
+}
+final.onclick = function() {
+	testsDiv.style.display = "block";
+	final.style.display = 'none';
 }
