@@ -51,7 +51,6 @@ function check(index) {
 	checkTable.style.display = 'block';
 	checkTable.innerHTML = "";
 	for (var i = 0; i < tests[index][1].length; i++) {
-		console.log(i);
 		if (i % 2 == 0) {
 			checkTable.innerHTML += `<tr><td style="width: 50%;">${tests[index][1][i]}</td><td style="background: #fff6d3; width: 50%; border-radius: 5px;">${tests[index][2][i]}</td><tr>`;
 		} else {
@@ -70,7 +69,6 @@ function start(index) {
 	for (var i = 0; i < tests[currentTest][1].length; i++) {
 		restTest[1].push(tests[currentTest][1][i]);
 		restTest[2].push(tests[currentTest][2][i]);
-		console.log(tests[currentTest][i]);
 	}
 	newQuestion();
 }
@@ -126,7 +124,6 @@ yes.onclick = function() {
 	newQuestion();
 }
 final.onclick = function() {
-	console.log(";a");
 	testsDiv.style.display = "block";
 	final.style.display = 'none';
 	mainDiv.style.display = "none";
