@@ -8,10 +8,11 @@
 		<button id="questionDiv">Вопрос</button><button class="ui" id="showAnswer">Показать ответ</button><button class="ui" id="yes">Верно</button><button class="ui" id="no">Неверно</button><button class="ui" id="progress" style="background: #f9a875;"></button>
 	</div>
 	<div id="testsDiv"></div>
+	<table id="checkTable" style="display: none; width: 100%; border-width: 0;" cellspacing="1"></table>
 	<div id="final" style="display: none;"></div>
 	<script src="logic.js"></script>
 	<style>
-		#questionDiv {
+		#questionDiv, .toCheck {
 			text-align: center;
 			background: white;
 			border-width: 0;
