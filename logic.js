@@ -45,6 +45,7 @@ var noPressed = 0;
 for (var i = 0; i < tests.length; i++) {
 	testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top;" oncontextmenu="check(${i}); return false;" onclick="start(${i})">${tests[i][0]}</button>`;
 }
+testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://t.me/kfb_easylearn';">Канал с обновлениями</button>`;
 function check(index) {
 	mainDiv.style.display = 'none';
 	testsDiv.style.display = 'none';
