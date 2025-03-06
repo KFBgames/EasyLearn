@@ -42,10 +42,10 @@ document.body.style.overflow = "visible";
 var restTest = [];
 var answeredOneAttempt = []; // ответил ли с первой попытки
 var noPressed = 0;
+testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://kfbgames.github.io/EasyLearn-How-to-use/';">Как пользоваться</button>`;
 for (var i = 0; i < tests.length; i++) {
 	testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top;" oncontextmenu="check(${i}); return false;" onclick="start(${i})">${tests[i][0]}</button>`;
 }
-//testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://t.me/kfb_easylearn';">Канал с обновлениями</button>`;
 function check(index) {
 	mainDiv.style.display = 'none';
 	testsDiv.style.display = 'none';
