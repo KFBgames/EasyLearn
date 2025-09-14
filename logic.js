@@ -73,6 +73,7 @@ function start(index) {
 	testsDiv.style.display = 'none';
 	checkTable.style.display = 'none';
 	noPressed = 0;
+	answeredOneAttempt = [];
 	restTest = [tests[currentTest], [], []];
 	for (var i = 0; i < tests[currentTest][1].length; i++) {
 		restTest[1].push(tests[currentTest][1][i]);
