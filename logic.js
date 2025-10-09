@@ -16,8 +16,12 @@ window.onresize = function() {
 	no.style.position = "absolute";
 	no.style.top = Math.floor(window.innerHeight * 0.5) + "px";
 	no.style.left = Math.floor(window.innerWidth * 0.5) + "px";
-	progress.style.width = Math.floor(window.innerWidth * 0.5) + "px";
-	progress.style.height = Math.floor(window.innerWidth * 0.05) + "px";
+	if (restTest.length == 0) {
+		progress.style.width = Math.floor(window.innerWidth * 0.5) + "px";
+	} else {
+		progress.style.width = Math.floor(window.innerWidth * (1 - restTest[1].length / tests[currentTest][1].length)) + "px";
+	}
+	progress.style.height = Math.floor(window.innerWidth) + "px";
 	progress.style.position = "absolute";
 	progress.style.top = Math.floor(window.innerHeight * 0.95) + "px";	
 	final.style.width = Math.floor(window.innerWidth) + "px";
@@ -27,7 +31,6 @@ window.onresize = function() {
 	//checkTable.style.height = Math.floor(window.innerHeight) + "px";
 	//checkTable.style.position = "absolute";
 }
-window.onresize();
 var currentTest = 0;
 /*var restTest = [tests[currentTest], [], []];
 for (var i = 0; i < tests[currentTest][1].length; i++) {
@@ -42,10 +45,12 @@ document.body.style.overflow = "visible";
 var restTest = [];
 var answeredOneAttempt = []; // ответил ли с первой попытки
 var noPressed = 0;
+window.onresize();
 testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://kfbgames.github.io/EasyLearn-How-to-use/';">Инструкция</button>`;
-for (var i = 0; i < tests.length; i++) {
+for (var i = tests.length - 1; i >= 0; i--) {
 	testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top;" oncontextmenu="check(${i}); return false;" onclick="start(${i})">${tests[i][0]}</button>`;
 }
+testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://forms.gle/71voW1niX8KmtB7X6';">Оставить отзыв</button>`;
 function check(index) {
 	mainDiv.style.display = 'none';
 	testsDiv.style.display = 'none';
