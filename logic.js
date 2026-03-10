@@ -50,7 +50,7 @@ testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; ve
 for (var i = tests.length - 1; i >= 0; i--) {
 	testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top;" oncontextmenu="check(${i}); return false;" onclick="start(${i})">${tests[i][0]}</button>`;
 }
-testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://forms.gle/71voW1niX8KmtB7X6';">Оставить отзыв</button>`;
+testsDiv.innerHTML += `<button class="ui" style="width: 250px; height: 100px; vertical-align: top; background: #ecac7d;" onclick="window.location.href = 'https://forms.gle/71voW1niX8KmtB7X6';">Поделиться мнением</button>`;
 function check(index) {
 	mainDiv.style.display = 'none';
 	testsDiv.style.display = 'none';
